@@ -1,0 +1,23 @@
+- hosts: dev
+  gather_facts: no
+  become: true
+  vars:
+    # dev: app
+  tasks:
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: present
+    tags:
+    - install
+  - name : Print variable value
+    debug:
+      msg: "Variable value is {{dev}}"
+  - name: copy index.html
+    template:
+      src: index.html
+      dest: /var/www/html/index.html
+  - name: start apache2
+    service:
+      name: httpd
+      state: started
