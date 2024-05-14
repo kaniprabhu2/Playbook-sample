@@ -2,7 +2,7 @@
   gather_facts: no
   become: true
   vars:
-    # dev: app
+     name: Kani
   tasks:
   - name: Install httpd
     yum:
@@ -12,7 +12,7 @@
     - install
   - name : Print variable value
     debug:
-      msg: "Variable value is {{dev}}"
+      msg: "Variable value is {{name}}"
   - name: copy index.html
     template:
       src: index.html
